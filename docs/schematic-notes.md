@@ -3,7 +3,11 @@
 Schematic: [`hardware/original-module/waffle-plate.kicad_sch`](../hardware/original-module/waffle-plate.kicad_sch) (KiCad 7 format, opens in KiCad 7 or later). There is a PDF copy alongside it.
 Component map: [`images/annotated/component-map.jpg`](../images/annotated/component-map.jpg)
 
-> **Status:** Ray has meter-verified the input bridge (D1–D4), the input shunt and its sense connections (RS1, RS2), and the output rectifier (D11–D20) with their pads. These parts are drawn with real wires and have `Verified = yes`. Everything else is still a first pass that uses net labels.
+> **Status:** Ray has meter-verified the input bridge (D1–D4), the input shunt and its sense connections (RS1, RS2), and the output rectifier (D11–D20) with their pads. These parts are drawn with real wires and have `Verified = yes`.
+>
+> The PFC stage (section B) is also wired. Ray believes its netlist is correct, but it hasn't been meter-checked yet, so its parts stay `Verified = no`.
+>
+> The full bridge (section C), RS3 and the remaining pads are still a first pass that uses net labels.
 >
 > The unverified topology comes from the community draft schematic (mynissanleaf.com thread *"Onboard charger failed 2012 but cannot find cause"*), plus part numbers identified on the module and a visual read of the stitched image. Nothing has been confirmed with a meter yet. Every part has a hidden `Verified` field set to `no`. Change it to `yes` once that part's connections are confirmed.
 
@@ -39,10 +43,10 @@ T2 sec (T7,T8) ─► bridge D16,D17,D19,D20 ┘   D12, D13 bypass each bridge
 | Ref | Part | Qty | Function | Confidence |
 |---|---|---|---|---|
 | D1–D4 | DF25V60 | 4 | AC input bridge | Verified |
-| Q1–Q3 | RJP6012 | 3 | PFC switch, paralleled | Part: confirmed |
-| R1–R3 | ? | 3 | PFC gate resistors | From draft |
-| Q4, Q5 | NPN / PNP | 2 | PFC gate-driver totem pole | From draft. Parts and location TBD |
-| D5, D6 | ? | 2 | PFC boost diodes, paralleled | Part number TBD |
+| Q1–Q3 | RJP6012 | 3 | PFC switch, paralleled | Part confirmed. Netlist believed correct |
+| R1–R3 | ? | 3 | PFC gate resistors, one per IGBT | Netlist believed correct. Values TBD |
+| Q4, Q5 | NPN / PNP | 2 | PFC gate-driver totem pole | Netlist believed correct. Part numbers TBD |
+| D5, D6 | ? | 2 | PFC boost diodes, paralleled | Netlist believed correct. Part number TBD |
 | Q6–Q13 | RJP6012 | 8 | Full bridge, 2 per switch | Part: confirmed. Pair-to-switch assignment TBD |
 | D7–D10 | ? | 4 | Freewheel diode, one per switch | Part number TBD |
 | D11–D20 | DF20L60U | 10 | Output rectifier (draft URD1–URD10) | Verified |
