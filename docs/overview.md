@@ -7,7 +7,12 @@
 - **Part:** internal power module, nicknamed the "waffle plate"
 - **Original part number / markings:** _TBD_
 
-## Observations so far (top side)
+## Construction
+
+- A single-sided copper circuit on a **ceramic substrate**, bonded to an **aluminium base plate**.
+- The underside is plain aluminium with no circuitry, so all circuitry is on the one side shown in the stitched image.
+
+## Observations so far
 
 From the stitched image in [`images/stitched/waffle-plate-top.jpg`](../images/stitched/waffle-plate-top.jpg):
 
@@ -34,10 +39,12 @@ _The die counts are from a first visual pass and need checking._
 - [ ] What is each die (MOSFET, IGBT, diode)? Are there markings on the die?
 - [ ] What topology does the module implement (PFC boost, full bridge, rectifier…)?
 - [ ] What is the pinout of the edge connectors to the rest of the charger?
-- [ ] How is the module cooled and mounted, and what thermal interface does it use?
+- [ ] How is the aluminium base mounted to the charger, and what thermal interface does it use?
 - [ ] What voltage and current ratings does each stage need?
 - [ ] What are the known failure modes in the field?
 
 ## Replica approach (draft)
 
-Replace each bare die with a packaged discrete part of equal or better rating (for example TO-247 or D2PAK). Mount them on a PCB or IMS board that matches the original module's footprint and connector positions, so it can drop into the existing charger housing.
+Replace each bare die with a packaged discrete part of equal or better rating (for example TO-247 or D2PAK). Mount them on a board that matches the original module's footprint and connector positions, so it can drop into the existing charger housing.
+
+Since the original is a single-sided circuit on an aluminium base, an **aluminium-core (IMS) PCB** is the natural candidate. It is also single-sided with a metal back, it can sit on the same heatsink surface, and it is cheap to have made. Open points: whether the IMS dielectric gives enough isolation voltage and thermal performance compared with the ceramic, and whether packaged parts fit in the height available inside the charger.
