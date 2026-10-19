@@ -1,0 +1,7 @@
+*.tif
+*.pto
+__pycache__/
+# KiCad
+*-backups/
+*.kicad_prl
+fp-info-cache
