@@ -3,7 +3,9 @@
 Schematic: [`hardware/original-module/waffle-plate.kicad_sch`](../hardware/original-module/waffle-plate.kicad_sch) (KiCad 7 format, opens in KiCad 7 or later). There is a PDF copy alongside it.
 Component map: [`images/annotated/component-map.jpg`](../images/annotated/component-map.jpg)
 
-> **Status: first pass, unverified.** The topology comes from the community draft schematic (mynissanleaf.com thread *"Onboard charger failed 2012 but cannot find cause"*), plus part numbers identified on the module and a visual read of the stitched image. Nothing has been confirmed with a meter yet. Every part has a hidden `Verified` field set to `no`. Change it to `yes` once that part's connections are confirmed.
+> **Status:** Ray has meter-verified the input bridge (D1–D4), the input shunt and its sense connections (RS1, RS2), and the output rectifier (D11–D20) with their pads. These parts are drawn with real wires and have `Verified = yes`. Everything else is still a first pass that uses net labels.
+>
+> The unverified topology comes from the community draft schematic (mynissanleaf.com thread *"Onboard charger failed 2012 but cannot find cause"*), plus part numbers identified on the module and a visual read of the stitched image. Nothing has been confirmed with a meter yet. Every part has a hidden `Verified` field set to `no`. Change it to `yes` once that part's connections are confirmed.
 
 ## Conventions
 
@@ -21,7 +23,7 @@ Component map: [`images/annotated/component-map.jpg`](../images/annotated/compon
 ```
 AC_L/AC_N ─► D1-D4 bridge ─► VREC+ ─► L1 (295µH, off-module) ─► PFC_SW
                  │                                                  │
-               VREC- ─► RS1 shunt ─► PGND        Q1-Q3 (parallel) ──┤ to PGND
+               VREC- ─► RS1+RS2 ─► PGND       Q1-Q3 (parallel) ──┤ to PGND
                                                  D5, D6 (parallel) ─┴─► HV_BUS+ (≈350 V, C1-C3 off-module)
 
 HV_BUS+ ─► full bridge: 4 switches × (2 × RJP6012 in parallel + 1 freewheel diode)
@@ -36,17 +38,18 @@ T2 sec (T7,T8) ─► bridge D16,D17,D19,D20 ┘   D12, D13 bypass each bridge
 
 | Ref | Part | Qty | Function | Confidence |
 |---|---|---|---|---|
-| D1–D4 | DF25V60 | 4 | AC input bridge | Part: confirmed. Role per position: TBD |
+| D1–D4 | DF25V60 | 4 | AC input bridge | Verified |
 | Q1–Q3 | RJP6012 | 3 | PFC switch, paralleled | Part: confirmed |
 | R1–R3 | ? | 3 | PFC gate resistors | From draft |
 | Q4, Q5 | NPN / PNP | 2 | PFC gate-driver totem pole | From draft. Parts and location TBD |
 | D5, D6 | ? | 2 | PFC boost diodes, paralleled | Part number TBD |
 | Q6–Q13 | RJP6012 | 8 | Full bridge, 2 per switch | Part: confirmed. Pair-to-switch assignment TBD |
 | D7–D10 | ? | 4 | Freewheel diode, one per switch | Part number TBD |
-| D11–D20 | DF20L60U | 10 | Output rectifier (draft URD1–URD10) | Part: confirmed. Topology from draft |
-| RS1–RS3 | shunt | 3 | Current sense with Kelvin connections | Values TBD. RS2 function TBD |
+| D11–D20 | DF20L60U | 10 | Output rectifier (draft URD1–URD10) | Verified |
+| RS1, RS2 | shunt | 2 | Input return shunt: two parts in series, Kelvin sense from the outer terminals to J10 and J11 (via net ties NT1, NT2) | Connections verified. Values TBD |
+| RS3 | shunt | 1 | Full-bridge return shunt | Unverified. Values TBD |
 
-## Upper-right physical mapping (hypothesis)
+## Upper-right physical mapping (hypothesis, to be filled in from the verified netlist)
 
 On every DF20L60U the **tab is the cathode**. One outer lead is wire-bonded to the tab (cathode) and the other is bonded to the die (anode). The middle lead is trimmed. Letters refer to [`component-map.jpg`](../images/annotated/component-map.jpg). The copper "islands" are read from the image only.
 
@@ -62,12 +65,12 @@ On every DF20L60U the **tab is the cathode**. One outer lead is wire-bonded to t
 
 ## Verification checklist (meter, diode-test mode)
 
-1. Pad J1 (L) and J4 (N) to the bridge: one DF25V60 drop (~0.5 V) to J7, and to the input shunt.
+1. ~~Input bridge and shunt~~ (verified).
 2. Pick one pair of each IGBT group and confirm C–C and E–E continuity, which shows they are in parallel.
 3. Find which full-bridge group connects to P (J27/J28) on its collectors. Those are the high-side switches.
 4. Confirm p23 (T1) and p25 (T4) are the two bridge midpoints.
-5. Confirm the rectifier table above, then fill in h, i, j.
-6. Trace both sense pins of each shunt to a module pad.
+5. ~~Rectifier netlist~~ (verified). Still to record: which package letter (a)–(j) is which D11–D20.
+6. Trace RS3's sense pins to module pads (RS1/RS2 done).
 7. Map the remaining pads: J8, J12/J13, J15, J30/J31, p27, p29, p31, p32, p33. These are probably gate drive and sense pairs.
 8. Record the gate and gate-emitter resistor values around Q6–Q13.
 
