@@ -14,8 +14,8 @@ The original module is a hybrid power assembly. It is a single-sided copper circ
 |---|---|
 | Imaging | ✅ Stitched (21 tiles, ~5300 × 4800 px). The bottom is a plain aluminium plate, so it isn't imaged |
 | Connector pinout | ⬜ Not started |
-| Component identification | ⬜ Not started |
-| Circuit topology / schematic | ⬜ Not started |
+| Component identification | 🟡 Main semiconductors and shunts located ([map](images/annotated/component-map.jpg)) |
+| Circuit topology / schematic | 🟡 First-pass KiCad schematic, unverified ([notes](docs/schematic-notes.md)) |
 | Replica schematic | ⬜ Not started |
 | Replica PCB (KiCad) | ⬜ Not started |
 | Bench test | ⬜ Not started |
@@ -26,13 +26,14 @@ The original module is a hybrid power assembly. It is a single-sided copper circ
 docs/              Notes, findings, component inventory, imaging method
 images/raw/        Original microscope tiles, one folder per capture set
 images/stitched/   Stitched mosaics
-hardware/          Replica design files (KiCad), when they exist
+hardware/          KiCad projects: original-module/ (reverse-engineered), replica later
 tools/stitch/      Script that stitches microscope tiles into a mosaic
 ```
 
 ## Documents
 
 - [Overview and open questions](docs/overview.md)
+- [Schematic notes and verification checklist](docs/schematic-notes.md)
 - [Component inventory](docs/component-inventory.md)
 - [Imaging and stitching method](docs/imaging.md)
 
