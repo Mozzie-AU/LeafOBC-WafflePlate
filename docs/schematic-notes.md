@@ -5,7 +5,7 @@ Component map: [`images/annotated/component-map.jpg`](../images/annotated/compon
 
 > **Status:** Ray has meter-verified the input bridge (D1–D4), the input shunt and its sense connections (RS1, RS2), and the output rectifier (D11–D20) with their pads. These parts are drawn with real wires and have `Verified = yes`.
 >
-> The PFC stage (section B) is also wired. Ray believes its netlist is correct, but it hasn't been meter-checked yet, so its parts stay `Verified = no`.
+> The PFC stage (section B) is also wired. Its gate driver (Q4, Q5, R4, R8, C4) is meter-verified. The rest of section B (IGBTs, gate resistors, boost diodes) is believed correct but not yet meter-checked, so those parts stay `Verified = no`.
 >
 > The full bridge (section C), RS3 and the remaining pads are still a first pass that uses net labels.
 >
@@ -45,7 +45,9 @@ T2 sec (T7,T8) ─► bridge D16,D17,D19,D20 ┘   D12, D13 bypass each bridge
 | D1–D4 | DF25V60 | 4 | AC input bridge | Verified |
 | Q1–Q3 | RJP6012 | 3 | PFC switch, paralleled | Part confirmed. Netlist believed correct |
 | R1–R3 | ? | 3 | PFC gate resistors, one per IGBT | Netlist believed correct. Values TBD |
-| Q4, Q5 | NPN / PNP | 2 | PFC gate-driver emitter follower | Pin-out read from the module image: both emitters to the gate output, which matches our schematic. Pending meter check. See [PFC gate driver](pfc-gate-driver.md) |
+| Q4, Q5 | NPN / PNP (BCX56-16 / BCX53-16 type) | 2 | PFC gate-driver emitter follower | Verified. See [PFC gate driver](pfc-gate-driver.md) |
+| R8, C4 | 43 Ω, 1 µF | 2 | Driver supply resistor (VDRV to VDRV_F) and decoupling to PGND | Verified. VDRV pad not yet assigned |
+| R4 | 10 kΩ | 1 | PFC gate pull-down (PFC_GDRV to PGND) | Verified |
 | D5, D6 | ? | 2 | PFC boost diodes, paralleled | Netlist believed correct. Part number TBD |
 | Q6–Q13 | RJP6012 | 8 | Full bridge, 2 per switch | Part: confirmed. Pair-to-switch assignment TBD |
 | D7–D10 | ? | 4 | Freewheel diode, one per switch | Part number TBD |

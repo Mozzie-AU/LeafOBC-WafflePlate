@@ -38,11 +38,11 @@ This is the standard complementary emitter follower:
 - **No shoot-through:** the two base–emitter junctions face each other, so only one transistor can conduct at a time.
 - **No saturation:** neither transistor saturates, so it switches fast.
 
-**Status:** read from the image; pending three meter checks:
+**Status: verified.** First read from the image, then confirmed with the meter by Ray:
 
-1. Continuity from both emitters (the NPN bottom lead and the PNP right leg) to the jumper's left pad.
-2. Continuity from the PNP collector paddle to the N1 pads (J18/J19).
-3. Continuity from the NPN collector toward the 43 Ω resistor and driver supply.
+1. Both emitters (the NPN bottom lead and the PNP right leg) have continuity to the jumper's left pad.
+2. The PNP collector paddle has continuity to the N1 pads (J18/J19).
+3. The NPN collector has continuity to the 43 Ω resistor and driver supply.
 
 ## Error in the replica designs
 
@@ -59,9 +59,14 @@ With the emitters on the rails, neither transistor can work normally. The NPN wo
 
 ## Our reverse-engineered schematic
 
-Section B of [`hardware/original-module/waffle-plate.kicad_sch`](../hardware/original-module/waffle-plate.kicad_sch) already has the correct arrangement:
+Section B of [`hardware/original-module/waffle-plate.kicad_sch`](../hardware/original-module/waffle-plate.kicad_sch) now matches the verified wiring:
 
-- **Q4 (NPN):** collector on VDRV, emitter on PFC_GDRV.
-- **Q5 (PNP):** emitter on PFC_GDRV, collector on PGND.
+| Ref | Part | Connections |
+|---|---|---|
+| Q4 | NPN | collector VDRV_F, base PFC_PWM, emitter PFC_GDRV |
+| Q5 | PNP | emitter PFC_GDRV, base PFC_PWM, collector PGND |
+| R8 | 43 Ω | VDRV (supply pad) to VDRV_F |
+| C4 | 1 µF | VDRV_F to PGND |
+| R4 | 10 kΩ | PFC_GDRV to PGND (gate pull-down) |
 
-Still to add once the meter checks are done: the 10 k gate pull-down, the 43 Ω supply resistor and the 1 µF decoupling capacitor.
+These parts are marked `Verified = yes`. The module pad that supplies VDRV hasn't been assigned yet.
