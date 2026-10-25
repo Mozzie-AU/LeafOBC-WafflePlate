@@ -50,10 +50,11 @@ T2 sec (T7,T8) ─► bridge D16,D17,D19,D20 ┘   D12, D13 bypass each bridge
 | R4 | 10 kΩ | 1 | PFC gate pull-down (PFC_GDRV to PGND) | Verified |
 | D5, D6 | ? | 2 | PFC boost diodes, paralleled | Netlist believed correct. Part number TBD |
 | Q6–Q13 | RJP6012 | 8 | Full bridge, 2 per switch | Part confirmed. Switch assignment read from the copper (Q6/Q7 AH, Q8/Q9 AL, Q10/Q11 BH, Q12/Q13 BL), matching the schematic. See [full-bridge gate network](full-bridge-gate-drive.md) |
-| D7–D10 | ? | 4 | Freewheel diode, one per switch | Part number TBD |
+| D7–D10 | ? | 4 | Freewheel diode, one per switch | Part number TBD. Both outer leads are anode, tab is cathode |
+| R11–R44, C11–C42 | 10 Ω? / 1 kΩ? / 1 nF? | 24 | Gate network, 6 parts per switch | Topology traced (BH, BL) or by analogy (AH, AL). Values unconfirmed. See [full-bridge gate network](full-bridge-gate-drive.md) |
 | D11–D20 | DF20L60U | 10 | Output rectifier (draft URD1–URD10) | Verified |
 | RS1, RS2 | shunt | 2 | Input return shunt: two parts in series, Kelvin sense from the outer terminals to J10 and J11 (via net ties NT1, NT2) | Connections verified. Values TBD |
-| RS3 | shunt | 1 | Full-bridge return shunt | Unverified. Values TBD |
+| RS3 | shunt | 1 | Full-bridge return | Unverified. The Ukrainian schematic shows R16 0 Ω, so possibly a link. Drawn in section A |
 
 ## Upper-right physical mapping (hypothesis, to be filled in from the verified netlist)
 

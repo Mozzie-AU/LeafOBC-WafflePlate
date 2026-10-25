@@ -76,7 +76,47 @@ Which gate each Rg feeds hasn't been traced yet.
 
 ## Damage
 
-The low-side switch of leg A (**AL**: Q8, Q9) has burnt and partly melted leads and copper around the gate and emitter area. There is green residue next to Q9. The two dies also look different from the other six (a round spot in the middle). This is probably where the module failed.
+- **AL (Q8, Q9) failed and ruptured.** Their leads and "pigtails" are burnt and partly melted, with green residue next to Q9, and the two dies show a round spot in the middle. Their lead shapes **don't represent the real die structure**, so don't use them to identify gate or emitter.
+- **Some gate terminations on the other dies were damaged** during handling. The gate/emitter identification (thin bond wire to the left lead = gate, thick to the right = emitter) is consistent across the dies that are intact, and agrees with both the Ukrainian schematic and Angel's design. Still, treat any single die's bond wires with care.
+
+## Comparison with Angel's replica design
+
+Angel's `igbt pair` sub-sheet (in [`hardware/replica-altium/kicad/`](../hardware/replica-altium/kicad/)) has **exactly the traced topology** for each of the four switches:
+
+| Traced role | Angel's part | Value |
+|---|---|---|
+| Rg1: drive → gate 1 | R10 | 10 Ω |
+| Rg2: drive → gate 2 | R12 | 10 Ω |
+| Rgg: gate 1 ↔ gate 2 | R11 | 10 Ω |
+| C1: gate 1 → emitter | C3 | 1 nF |
+| C2: gate 2 → emitter | C2 | 1 nF |
+| Rge: drive → emitter | R13 | 1 kΩ |
+
+So three sources agree on the **topology**: the copper, the Ukrainian schematic and Angel's design. They aren't independent sources for the **values**, because Angel's values match the Ukrainian schematic and were probably taken from it.
+
+(Angel's PFC driver had the transistors' emitter and collector swapped; see [PFC gate driver](pfc-gate-driver.md). His full-bridge gate network doesn't have that problem.)
+
+## Are the values reasonable? (datasheet check)
+
+There is **no public RJP6012 datasheet**. Renesas has said all its IGBTs are end-of-life ([Renesas community thread](https://community.renesas.com/power-products/f/power-management/58643/rjp6012-datasheet)). As a stand-in, the [RJP60V0DPM](https://www.mouser.com/datasheet/2/698/r07ds0669ej0200_rjp60v0dpm-1093090.pdf) is a 600 V, 22 A Renesas IGBT from the same RJP60 family. For Angel's part, the [HGTG10N120BND](https://www.mikrocontroller.net/attachment/132171/10n120bnd.pdf) datasheet covers the same 1200 V NPT IGBT as the HGT1S10N120BNS, plus an internal diode.
+
+| | RJP60V0DPM | HGTG10N120BND |
+|---|---|---|
+| V(GE) max | ±30 V | ±20 V (±30 V pulsed) |
+| Cies | 1080 pF | not stated |
+| Qg at 15 V | 75 nC | 100 nC |
+| Switching test R(G) | 5 Ω | 10 Ω |
+| t(f) | 70 ns | 100–140 ns |
+
+Against those figures:
+
+- **10 Ω per gate (Rg1, Rg2):** the same order as the datasheet test resistors (5–10 Ω). Reasonable.
+- **1 nF gate–emitter (C1, C2):** about the same as the IGBT's own input capacitance (~1.1 nF), so it roughly doubles the gate load. With 10 Ω the gate time constant is about 20 ns. That slightly slows the switching edges and reduces Miller-induced turn-on (Cres is only ~42 pF). It adds about 15 nC per IGBT at 15 V, roughly +20 % driver load. Reasonable for a few-tens-of-kHz bridge.
+- **10 Ω between the two gates (Rgg):** unusual. With separate gate resistors already present, it looks intended to tie the two paralleled gates together and damp oscillation between them. It's harmless at this value.
+- **1 kΩ drive-input pull-down (Rge):** a normal value for holding the gates off when the driver is unpowered.
+- **Gate drive voltage:** set by the charger board's gate driver and **not yet known**. It must stay within V(GE) max, and Angel's part has the tighter rating (±20 V).
+
+**For a replica:** Angel's HGT1S10N120BNS is a 1200 V NPT IGBT with higher gate charge (100 nC against 75 nC) and a slower fall time. It's over-rated for a ~400 V bus, and it will run with more switching loss than a 600–650 V part. Worth comparing with current 600–650 V IGBTs before committing.
 
 ## Meter checks (copper only)
 
@@ -93,4 +133,15 @@ Probe copper on both sides, never across a part.
 - A second, intact module to measure the part values and confirm the part types.
 - The pad mapping (check 3).
 - Confirmation of the left-hand switches (check 4).
-- Then the gate networks can go into section C of the schematic.
+- The gate drive voltage from the charger board.
+
+## In the schematic
+
+The gate networks are now in section C of [`waffle-plate.kicad_sch`](../hardware/original-module/waffle-plate.kicad_sch), all marked `Verified = no`:
+
+- **AH:** R11–R14, C11–C12.
+- **AL:** R21–R24, C21–C22.
+- **BH:** R31–R34, C31–C32.
+- **BL:** R41–R44, C41–C42.
+
+Values ending in "?" are the reference values. Each switch has its own drive-input net (`DRV_AH` and so on) and its own gate nets (`G_AH1`, `G_AH2` and so on). The drive-input pads aren't assigned yet.
