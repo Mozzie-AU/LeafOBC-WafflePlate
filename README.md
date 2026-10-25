@@ -4,7 +4,11 @@ Reverse engineering the "waffle plate" power module from the **2012 Nissan Leaf 
 
 The original module is a hybrid power assembly. It is a single-sided copper circuit on a ceramic substrate, bonded to an aluminium base plate, and mounted in a moulded frame. When one fails, the charger is usually written off. A drop-in replacement made from discrete, readily available parts would let these chargers be repaired.
 
-![Waffle plate, top side, stitched from 21 microscope images](images/stitched/waffle-plate-top.jpg)
+<p align="center">
+  <a href="images/stitched/waffle-plate-top.jpg"><img src="images/stitched/waffle-plate-top.jpg" alt="Waffle plate, top side, stitched from 21 microscope images"></a>
+  <br>
+  <em>Top side of the waffle plate. The potting and each component's encapsulation have been removed by laser etching, exposing the bare dies, bond wires and copper tracks. Stitched from 21 microscope images (5320 × 4802 px). Click for full resolution, or see the <a href="images/annotated/component-map.jpg">annotated component map</a>.</em>
+</p>
 
 > ⚠️ **High voltage.** The OBC works from mains AC and charges a traction battery of several hundred volts DC. Capacitors in the charger can hold a lethal charge after it is disconnected. Anything in this repo is provided for documentation and research, with no warranty. See the licence.
 
