@@ -7,3 +7,9 @@ __pycache__/
 fp-info-cache
 *.kicad_prl
 _autosave-*
+# Altium
+History/
+__Previews/
+Project Logs for */
+Project Outputs for */
+*.PrjPcbStructure

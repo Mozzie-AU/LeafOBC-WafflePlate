@@ -1,0 +1,81 @@
+Altium Designer Pick and Place Locations
+D:\Dropbox\Projects\nissan_leaf_waffle\Nissan Leaf Waffle 2024-10-27\nissan\Pick Place\Pick Place for waffle.txt
+
+========================================================================================================================
+File Design Information:
+
+Date:       27-10-24
+Time:       19:36
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mm
+
+Designator Center-X(mm) Center-Y(mm) Layer       Rotation Footprint          
+D17SW      2,8100mm     -56,0500mm   BottomLayer 180      PG-TO252-3_-_diode 
+D17SE      47,6100mm    -59,4500mm   BottomLayer 180      PG-TO252-3_-_diode 
+D17NW      1,7900mm     -36,4500mm   BottomLayer 180      PG-TO252-3_-_diode 
+D17NE      43,1100mm    -37,1500mm   BottomLayer 180      PG-TO252-3_-_diode 
+D12        13,5100mm    14,4500mm    BottomLayer 0        PG-TO252-3_-_diode 
+D14        39,3100mm    2,3500mm     BottomLayer 0        PG-TO252-3_-_diode 
+D13        26,2000mm    2,6839mm     BottomLayer 0        PG-TO252-3_-_diode 
+D11        39,1900mm    19,3500mm    BottomLayer 0        PG-TO252-3_-_diode 
+D10        26,2000mm    19,4500mm    BottomLayer 0        PG-TO252-3_-_diode 
+D9         39,6000mm    36,5500mm    BottomLayer 0        PG-TO252-3_-_diode 
+D8         26,1100mm    36,6500mm    BottomLayer 0        PG-TO252-3_-_diode 
+D7         12,2100mm    47,1500mm    BottomLayer 0        PG-TO252-3_-_diode 
+D6         39,8100mm    52,4500mm    BottomLayer 0        PG-TO252-3_-_diode 
+D5         26,2900mm    52,4500mm    BottomLayer 0        PG-TO252-3_-_diode 
+D16        -33,1100mm   -20,2500mm   BottomLayer 0        PG-TO252-3_-_diode 
+D15        -50,0900mm   -20,3500mm   BottomLayer 0        PG-TO252-3_-_diode 
+D4         -22,7500mm   26,0900mm    BottomLayer 90       PG-TO252-3_-_diode 
+D3         -23,6500mm   43,5900mm    BottomLayer 270      PG-TO252-3_-_diode 
+D2         -39,7500mm   27,8100mm    BottomLayer 270      PG-TO252-3_-_diode 
+D1         -42,4500mm   44,0000mm    BottomLayer 90       PG-TO252-3_-_DIODE 
+J1         -0,8000mm    0,5000mm     TopLayer    0        WAFFLE             
+C1         -50,5000mm   8,6000mm     TopLayer    180      1206               
+C2NE       25,1000mm    -38,4000mm   TopLayer    0        1206               
+C2NW       -17,9000mm   -39,2000mm   TopLayer    0        1206               
+C2SE       26,6000mm    -53,7000mm   TopLayer    0        1206               
+C2SW       -18,8000mm   -54,4000mm   TopLayer    0        1206               
+C3NE       32,3000mm    -38,6000mm   TopLayer    180      1206               
+C3NW       -11,7000mm   -39,2000mm   TopLayer    180      1206               
+C3SE       33,6000mm    -53,7000mm   TopLayer    180      1206               
+C3SW       -12,0000mm   -54,5000mm   TopLayer    180      1206               
+Q1         -54,8000mm   17,2000mm    TopLayer    0        SOT-89             
+Q2         -48,5500mm   17,2000mm    TopLayer    0        SOT-89             
+Q3         -49,0000mm   -4,7500mm    BottomLayer 180      PG-TO252-3         
+Q4         -36,5000mm   -5,0000mm    BottomLayer 180      PG-TO252-3         
+Q5         -22,5000mm   -5,0000mm    BottomLayer 180      PG-TO252-3         
+Q6NE       31,5900mm    -36,3500mm   BottomLayer 180      PG-TO252-3         
+Q6NW       -9,8820mm    -36,0000mm   BottomLayer 180      PG-TO252-3         
+Q6SE       32,1100mm    -54,3500mm   BottomLayer 180      PG-TO252-3         
+Q6SW       -8,7100mm    -53,0000mm   BottomLayer 180      PG-TO252-3         
+Q7NE       17,9600mm    -36,2500mm   BottomLayer 180      PG-TO252-3         
+Q7NW       -27,7100mm   -36,5000mm   BottomLayer 180      PG-TO252-3         
+Q7SE       17,8100mm    -53,1500mm   BottomLayer 180      PG-TO252-3         
+Q7SW       -27,9650mm   -52,8733mm   BottomLayer 180      PG-TO252-3         
+R1         -35,2500mm   15,0000mm    TopLayer    90       1206               
+R2         -40,9000mm   15,4000mm    TopLayer    270      1206               
+R3         -50,4500mm   12,4000mm    TopLayer    0        1206               
+R4         -55,2500mm   -1,0000mm    BottomLayer 90       1206               
+R8         10,0000mm    -39,0000mm   BottomLayer 0        1206               
+R5         -46,8000mm   -12,4000mm   TopLayer    270      1206               
+R6         -34,0000mm   -12,4000mm   TopLayer    270      1206               
+R7         -27,5000mm   -8,4000mm    TopLayer    180      1206               
+R9         -56,0000mm   -57,0000mm   BottomLayer 90       1206               
+R10NE      35,5000mm    -29,4000mm   TopLayer    270      1206               
+R10NW      -10,0000mm   -30,9000mm   TopLayer    270      1206               
+R10SE      37,8000mm    -49,6000mm   TopLayer    270      1206               
+R10SW      -10,9000mm   -46,6000mm   TopLayer    270      1206               
+R11NE      31,4000mm    -30,9000mm   TopLayer    0        1206               
+R11NW      -17,2500mm   -30,8000mm   TopLayer    0        1206               
+R11SE      33,0000mm    -49,5000mm   TopLayer    90       1206               
+R11SW      -15,4000mm   -47,8000mm   TopLayer    0        1206               
+R12NE      28,8000mm    -26,4000mm   TopLayer    180      1206               
+R12NW      -19,0000mm   -27,0000mm   TopLayer    180      1206               
+R12SE      25,4000mm    -48,7000mm   TopLayer    270      1206               
+R12SW      -17,7000mm   -43,5000mm   TopLayer    270      1206               
+R13NE      29,8000mm    -34,2000mm   TopLayer    0        1206               
+R13NW      -17,5000mm   -34,9000mm   TopLayer    0        1206               
+R13SE      29,0000mm    -49,5000mm   TopLayer    90       1206               
+R13SW      -15,5000mm   -51,3000mm   TopLayer    0        1206               

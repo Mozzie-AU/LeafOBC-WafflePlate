@@ -1,0 +1,15 @@
+Output: Copy Files
+Type  : Copy Files
+From  : Project [Nissan Leaf Waffle.PrjPcb]
+   Generated File[waffle.SchDoc]
+   Generated File[igbt pair.SchDoc]
+   Generated File[waffer.OutJob]
+   Generated File[waffle.PcbDoc]
+   Generated File[waffle.PcbLib]
+   Generated File[Nissan Leaf Waffle.SCHLIB]
+
+
+Files Generated   : 6
+Documents Printed : 0
+
+Finished Output Generation At 19:36:43 On 2024-10-27

@@ -2,3 +2,10 @@
 *.jpg binary
 *.png binary
 *.tif binary
+*.SchDoc binary
+*.PcbDoc binary
+*.SchLib binary
+*.SCHLIB binary
+*.PcbLib binary
+*.xlsx binary
+*.xls binary

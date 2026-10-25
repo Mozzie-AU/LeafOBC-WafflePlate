@@ -1,0 +1,8 @@
+DRC Rules Export File for PCB: D:\Dropbox\Projects\nissan_leaf_waffle\Nissan Leaf Waffle 2024-10-27\waffle.PcbDoc
+RuleKind=Clearance|RuleName=Clearance_ hv|Scope=Board|Minimum=47.24
+RuleKind=Clearance|RuleName=Clearance general|Scope=Board|Minimum=7.87
+RuleKind=Width|RuleName=bot|Scope=Board|Minimum=7.87
+RuleKind=Width|RuleName=top|Scope=Board|Minimum=19.69
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=39.37
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
