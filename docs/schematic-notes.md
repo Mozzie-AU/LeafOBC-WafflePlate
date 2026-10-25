@@ -45,7 +45,7 @@ T2 sec (T7,T8) ─► bridge D16,D17,D19,D20 ┘   D12, D13 bypass each bridge
 | D1–D4 | DF25V60 | 4 | AC input bridge | Verified |
 | Q1–Q3 | RJP6012 | 3 | PFC switch, paralleled | Part confirmed. Netlist believed correct |
 | R1–R3 | ? | 3 | PFC gate resistors, one per IGBT | Netlist believed correct. Values TBD |
-| Q4, Q5 | NPN / PNP | 2 | PFC gate-driver totem pole | Netlist believed correct. Part numbers TBD |
+| Q4, Q5 | NPN / PNP | 2 | PFC gate-driver emitter follower | Pin-out read from the module image: both emitters to the gate output, which matches our schematic. Pending meter check. See [PFC gate driver](pfc-gate-driver.md) |
 | D5, D6 | ? | 2 | PFC boost diodes, paralleled | Netlist believed correct. Part number TBD |
 | Q6–Q13 | RJP6012 | 8 | Full bridge, 2 per switch | Part: confirmed. Pair-to-switch assignment TBD |
 | D7–D10 | ? | 4 | Freewheel diode, one per switch | Part number TBD |

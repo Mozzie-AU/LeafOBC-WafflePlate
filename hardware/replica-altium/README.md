@@ -57,6 +57,8 @@ Use `git log -- hardware/replica-altium/altium/waffle.PcbDoc` to step through th
 
 Inconsistencies to check:
 
+- **PFC gate driver wired wrongly:** Q1 (BCX53) and Q2 (BCX56) have emitter and collector swapped, so the push-pull stage can't drive the PFC gates. See [docs/pfc-gate-driver.md](../../docs/pfc-gate-driver.md) for the original wiring and the fix.
+
 - Angel's notes name **IGD08N120S7** IGBTs and **STTH25M06B** diodes, but the BOM lists HGT1S10N120BNST and SE20DLJ-M3/I. Confirm with Angel which parts he actually fitted.
 - The diode line's supplier part numbers (VS-E5TX3012S2L-M3) don't match the part named in the same line (SE20DLJ-M3/I).
 - The IGBT line's description reads "IGBT N type 20A(40) 600V dpak, possible replacement STB27NM60N", which doesn't match the HGT1S10N120BNST part name.

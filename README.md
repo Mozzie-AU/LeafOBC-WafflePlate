@@ -39,6 +39,7 @@ tools/stitch/      Script that stitches microscope tiles into a mosaic
 
 - [Overview and open questions](docs/overview.md)
 - [Schematic notes and verification checklist](docs/schematic-notes.md)
+- [PFC gate driver: original pin-out and replica wiring error](docs/pfc-gate-driver.md)
 - [Component inventory](docs/component-inventory.md)
 - [Imaging and stitching method](docs/imaging.md)
 - [Altium replica build log (Angel Monera Martinez)](docs/replica-altium-notes.md)
