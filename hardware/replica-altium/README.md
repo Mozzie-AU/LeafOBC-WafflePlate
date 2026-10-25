@@ -20,6 +20,7 @@ The power semiconductors sit on the underside, against the charger's cooling pla
 | `altium/Nissan Leaf Waffle.SCHLIB` | Schematic symbol library |
 | `altium/waffer.OutJob` | Output job used to produce the fabrication files |
 | `fabrication/2024-10-28-jlcpcb/` | Gerbers, NC drill, BOM, pick and place, DRC and stack-up reports **for the 27 Oct 2024 version** (the one sent to JLCPCB) |
+| `kicad/` | **KiCad conversion** of the 4 Dec version (schematic, PCB, symbol library, schematic PDF). See below |
 | `renders/` | 3D renders of the board |
 
 ## Versions (git history)
@@ -62,8 +63,40 @@ Inconsistencies to check:
 
 ## Opening the files
 
-- **Altium Designer:** open `Nissan Leaf Waffle.PrjPcb`.
-- **KiCad 7 or later:** *File → Import → Non-KiCad Schematic / Board* reads `.SchDoc` and `.PcbDoc`. The import is not perfect, so check the netlist afterwards.
+- **Altium Designer:** open `Nissan Leaf Waffle.PrjPcb` in `altium/`.
+- **KiCad 7 or later:** open `kicad/waffle.kicad_pro`.
+
+## KiCad version (`kicad/`)
+
+The Altium files (4 Dec 2024 version) were converted with KiCad 7.0.11's own Altium importers:
+
+- **Schematic:** *File → Import → Non-KiCad Schematic* on `waffle.SchDoc`, which pulls in the `igbt pair` sub-sheet.
+- **PCB:** the same importer, run through KiCad's Python API on `waffle.PcbDoc`.
+
+| File | What |
+|---|---|
+| `waffle.kicad_pro` | Project |
+| `waffle.kicad_sch` | Main sheet |
+| `igbt pair.kicad_sch` | Switch sub-sheet, used four times (NW, NE, SW, SE) |
+| `waffle-altium-import.kicad_sym`, `sym-lib-table` | Symbols extracted from the Altium design |
+| `waffle.kicad_pcb` | PCB (footprints are embedded in the board) |
+| `ALTIUM_EMBEDDED_MODELS/` | 3D model carried over from the PcbDoc |
+| `waffle-schematic.pdf` | PDF of the schematic |
+
+**One fix was made after import.** Altium's multichannel naming (NE/NW/SE/SW suffixes on the four copies of the switch sheet) didn't survive the import. All four copies came in with identical names (Q6, R10 and so on), which in KiCad merges the four switches' gate nets into one. Each sheet copy was given its Altium channel name (`igbt pair NE` and so on), confirmed from the sheet-symbol records in the `.SchDoc`. Each part was given its per-channel reference (`Q6NE`, `R10SW` and so on), matching the PCB.
+
+**Checks made on the conversion:**
+
+- The schematic netlist and the PCB connectivity were compared pin by pin. All 219 pins the two have in common group into the same 42 nets, so the conversion didn't change any connectivity.
+- The schematic has one extra part, **J2**, a second 72-pin edge-connector symbol with no footprint on the board. It came across from the Altium schematic as-is.
+- The PCB has 312 footprints in total. Only 68 of them are named parts; the rest are the pins and the snap-off support boards.
+
+**Known quirks:**
+
+- KiCad warns about *annotation errors* when exporting. The only cause is the Altium-style names that end in letters (`Q6NE`). KiCad expects names to end in a number. It's cosmetic, and the names are kept so they match the PCB, the BOM and Angel's notes. **Don't run *Annotate Schematic*** unless you mean to rename these parts. If you do, update the PCB with *Tools → Update PCB from Schematic* and tick *Re-link footprints to schematic symbols based on their reference designators*.
+- The schematic and PCB were imported separately, so the footprints are not yet linked to the symbols. The first *Update PCB from Schematic* should use the same re-link option.
+- The PCB import gave 271 warnings. All of them say items on Altium mechanical layers 71 and 72, which have no KiCad equivalent, were moved to `Eco1_User`.
+- The ERC and DRC rules have not been tuned for KiCad. Treat their first results as a to-do list, not as design errors.
 
 ## Relation to the reverse-engineered schematic
 
