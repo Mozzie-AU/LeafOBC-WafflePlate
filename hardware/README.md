@@ -1,4 +1,4 @@
 # Hardware
 
-- `original-module/`: reverse-engineered schematic of the original waffle plate (first pass, unverified). See [docs/schematic-notes.md](../docs/schematic-notes.md).
-- The replica design will go in its own folder once the original schematic is confirmed.
+- `original-module/`: KiCad schematic of the original waffle plate, reverse-engineered. See [docs/schematic-notes.md](../docs/schematic-notes.md).
+- `replica-altium/`: Angel Monera Martinez's Altium replica design (built, untested). See its [README](replica-altium/README.md).
