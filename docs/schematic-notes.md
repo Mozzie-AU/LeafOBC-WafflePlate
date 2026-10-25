@@ -49,7 +49,7 @@ T2 sec (T7,T8) ─► bridge D16,D17,D19,D20 ┘   D12, D13 bypass each bridge
 | R8, C4 | 43 Ω, 1 µF | 2 | Driver supply resistor (VDRV to VDRV_F) and decoupling to PGND | Verified. VDRV pad not yet assigned |
 | R4 | 10 kΩ | 1 | PFC gate pull-down (PFC_GDRV to PGND) | Verified |
 | D5, D6 | ? | 2 | PFC boost diodes, paralleled | Netlist believed correct. Part number TBD |
-| Q6–Q13 | RJP6012 | 8 | Full bridge, 2 per switch | Part: confirmed. Pair-to-switch assignment TBD |
+| Q6–Q13 | RJP6012 | 8 | Full bridge, 2 per switch | Part confirmed. Switch assignment read from the copper (Q6/Q7 AH, Q8/Q9 AL, Q10/Q11 BH, Q12/Q13 BL), matching the schematic. See [full-bridge gate network](full-bridge-gate-drive.md) |
 | D7–D10 | ? | 4 | Freewheel diode, one per switch | Part number TBD |
 | D11–D20 | DF20L60U | 10 | Output rectifier (draft URD1–URD10) | Verified |
 | RS1, RS2 | shunt | 2 | Input return shunt: two parts in series, Kelvin sense from the outer terminals to J10 and J11 (via net ties NT1, NT2) | Connections verified. Values TBD |
@@ -78,7 +78,7 @@ On every DF20L60U the **tab is the cathode**. One outer lead is wire-bonded to t
 5. ~~Rectifier netlist~~ (verified). Still to record: which package letter (a)–(j) is which D11–D20.
 6. Trace RS3's sense pins to module pads (RS1/RS2 done).
 7. Map the remaining pads: J8, J12/J13, J15, J30/J31, p27, p29, p31, p32, p33. These are probably gate drive and sense pairs.
-8. Record the gate and gate-emitter resistor values around Q6–Q13.
+8. Gate network around Q6–Q13: traced for the right-hand switches, with meter checks listed in [full-bridge-gate-drive.md](full-bridge-gate-drive.md). Values need a second module.
 
 ## Things noticed
 
