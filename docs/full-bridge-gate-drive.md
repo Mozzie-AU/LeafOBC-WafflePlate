@@ -118,20 +118,44 @@ Against those figures:
 
 **For a replica:** Angel's HGT1S10N120BNS is a 1200 V NPT IGBT with higher gate charge (100 nC against 75 nC) and a slower fall time. It's over-rated for a ~400 V bus, and it will run with more switching loss than a 600–650 V part. Worth comparing with current 600–650 V IGBTs before committing.
 
+## Gate-drive pads
+
+![Gate-drive pad rows on the right edge](../images/annotated/gate-drive-pads.jpg)
+
+*Crop of the stitched image, x 4250–5320, y 3350–4620. Circles on the right mark the module-side pad of each pin row.*
+
+The lower right edge has seven pin rows. Each row has an **inner** pin, whose pad the tracks reach, and an **outer** pin. That fits the draft and the Ukrainian schematic naming each pad as a pin pair ("21/22" and so on). From top to bottom the rows match the draft's pads in order: p23 (T1), p25 (T4), p27, p29, p31, p32, p33.
+
+Each switch's two tracks (drive input and emitter return) run as a pair to one row:
+
+| Row (y) | Draft pad | Pins | Switch | Drive pin | Emitter (Kelvin) pin | Evidence |
+|---|---|---|---|---|---|---|
+| 3538 | p27 | 21/22 | **AH** | 22 | 21 (BR_A) | Image: the pair of tracks from the left-hand switches lands on this row |
+| 3779 | p29 | 23/24 | **BH** | 23 | 24 (BR_B) | Image: the DRV_BH track lands on the inner pad. The emitter track from BH.Rge runs to the same row |
+| 4009 | p31 | 17/18 | — | — | — | Image: a small chip at (4578, 4110) sits across this row's two pins. This is TH202, the 100 k thermistor on the Ukrainian schematic |
+| 4126 | p32 | 19/20 | **AL** \* | 19 | 20 (HB_N) | Ukrainian schematic only |
+| 4256 | p33 | 25/26 | **BL** \* | 25 | 26 (HB_N) | Ukrainian schematic only |
+
+\* For the bottom two rows, the AL and BL track pairs run under the lower vertical jumper and cross on their way up to the pins. In the image I couldn't tell which row each pair reaches, so these two follow the Ukrainian schematic.
+
+**Which pin in each pair is drive** is taken from the Ukrainian schematic. The image confirms it for BH only, where the drive track lands on the inner pad. The physical numbering (which of the inner and outer pins is the lower number) isn't known yet.
+
+The two upper rows, p23 (T1) and p25 (T4), are the bridge midpoints to the transformers. Which leg goes to which is still listed as check 5 below.
+
 ## Meter checks (copper only)
 
 Probe copper on both sides, never across a part.
 
 1. **BH and BL:** gate test pad ↔ gate lead pad, for each IGBT, to confirm the gate nets.
 2. **BH and BL:** each end of the horizontal jumpers ↔ the tracks they join (left end to gate 1, right end to the drive input).
-3. **Pad mapping:** from each Rge's drive-input end and its Kelvin track, follow to the module pins. That gives the four drive/return pairs (pads 21/22, 23/24, 19/20, 25/26 on the Ukrainian schematic) for each switch.
+3. **Pad mapping:** confirm the table above. For each switch, continuity from the Rge drive-input end and its emitter (Kelvin) track to the inner and outer pin of its row. AL and BL (p32, p33) need it most.
 4. **AH and AL:** for each part, check each end against the gate pads, the emitter copper and the shared drive-input track, to confirm or correct the roles marked "?".
 5. **Midpoints:** leg A midpoint (cream area) ↔ pad p23 (T1); leg B midpoint (vertical column) ↔ pad p25 (T4). Or the other way round, which is the point of checking.
 
 ## Still needed
 
 - A second, intact module to measure the part values and confirm the part types.
-- The pad mapping (check 3).
+- Confirmation of the pad mapping, especially AL/BL (check 3).
 - Confirmation of the left-hand switches (check 4).
 - The gate drive voltage from the charger board.
 
@@ -144,4 +168,4 @@ The gate networks are now in section C of [`waffle-plate.kicad_sch`](../hardware
 - **BH:** R31–R34, C31–C32.
 - **BL:** R41–R44, C41–C42.
 
-Values ending in "?" are the reference values. Each switch has its own drive-input net (`DRV_AH` and so on) and its own gate nets (`G_AH1`, `G_AH2` and so on). The drive-input pads aren't assigned yet.
+Values ending in "?" are the reference values. Each switch has its own drive-input net (`DRV_AH` and so on) and its own gate nets (`G_AH1`, `G_AH2` and so on). Each switch's drive and emitter pads are drawn next to it (P26–P33), marked unconfirmed, with the source noted on each.

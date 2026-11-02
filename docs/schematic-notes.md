@@ -78,7 +78,7 @@ On every DF20L60U the **tab is the cathode**. One outer lead is wire-bonded to t
 4. Confirm p23 (T1) and p25 (T4) are the two bridge midpoints.
 5. ~~Rectifier netlist~~ (verified). Still to record: which package letter (a)–(j) is which D11–D20.
 6. Trace RS3's sense pins to module pads (RS1/RS2 done).
-7. Map the remaining pads: J8, J12/J13, J15, J30/J31, p27, p29, p31, p32, p33. These are probably gate drive and sense pairs.
+7. Map the remaining pads: J8, J12/J13, J15, J30/J31. The gate-drive pads p27, p29, p32 and p33 and the thermistor pad p31 are mapped (unconfirmed) in [full-bridge-gate-drive.md](full-bridge-gate-drive.md#gate-drive-pads).
 8. Gate network around Q6–Q13: traced for the right-hand switches, with meter checks listed in [full-bridge-gate-drive.md](full-bridge-gate-drive.md). Values need a second module.
 
 ## Things noticed
