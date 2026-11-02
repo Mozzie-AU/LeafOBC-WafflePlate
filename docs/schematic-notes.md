@@ -3,23 +3,24 @@
 Schematic: [`hardware/original-module/waffle-plate.kicad_sch`](../hardware/original-module/waffle-plate.kicad_sch) (KiCad 7 format, opens in KiCad 7 or later). There is a PDF copy alongside it.
 Component map: [`images/annotated/component-map.jpg`](../images/annotated/component-map.jpg)
 
-> **Status:** Ray has meter-verified the input bridge (D1–D4), the input shunt and its sense connections (RS1, RS2), and the output rectifier (D11–D20) with their pads. These parts are drawn with real wires and have `Verified = yes`.
+> **Status:** Ray has meter-verified the input bridge (D1–D4), the input shunt and its sense connections (RS1, RS2), and the output rectifier (D11–D20) with their pads. These parts have `Verified = yes`.
 >
 > The PFC stage (section B) is also wired. Its gate driver (Q4, Q5, R4, R8, C4) is meter-verified. The rest of section B (IGBTs, gate resistors, boost diodes) is believed correct but not yet meter-checked, so those parts stay `Verified = no`.
 >
-> The full bridge (section C), RS3 and the remaining pads are still a first pass that uses net labels.
+> The full bridge (section C) is drawn wired as an H-bridge (legs A and B, with gate networks and drive pads). **None of it is meter-verified.** Its gate networks are traced from the image (BH, BL) or assigned by analogy (AH, AL). Values are reference values, and the AL/BL drive pads come from the Ukrainian schematic. RS3 and the remaining pads use net labels.
 >
 > The unverified topology comes from the community draft schematic (mynissanleaf.com thread *"Onboard charger failed 2012 but cannot find cause"*), plus part numbers identified on the module and a visual read of the stitched image. Nothing has been confirmed with a meter yet. Every part has a hidden `Verified` field set to `no`. Change it to `yes` once that part's connections are confirmed.
 
 ## Conventions
 
-- Connectivity is set by **net labels on every pin**. To change a connection, rename the label.
+- **Drawing style doesn't indicate verification.** Some circuits are drawn with wires and some with net labels on each pin. Whether a part's connections are confirmed is recorded only in its hidden `Verified` field (and in this file).
+- Where a part uses net labels, rename a label to change a connection. Where it's wired, edit the wires. Net labels on the wires give the nets their names (`DRV_AH`, `G_AH1`, `BR_A`, `HB_N` and so on).
 - Hidden fields on each part:
   - `Draft_ref`: the part's name on the community draft (ULQD1, LLQ1, URD3 …)
   - `Location_px`: pixel position in [`images/stitched/waffle-plate-top.jpg`](../images/stitched/waffle-plate-top.jpg)
   - `Verified`: `yes` or `no`
   - `Note`: anything open
-- `P1`…`P25` are module pads. Each pad's value is its draft pad name (J1 L, p23 T1 …).
+- `P1`…`P33` are module pads. Each pad's value is its draft pad name (J1 L, p23 T1 …); the full-bridge drive pads P26–P33 give the pad and pin ("p27 pin 22 drive").
 - Off-module parts (PFC inductor, bulk capacitors, transformers) are drawn for context. They are marked not in BOM and not on board.
 
 ## Topology

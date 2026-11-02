@@ -161,7 +161,7 @@ Probe copper on both sides, never across a part.
 
 ## In the schematic
 
-The gate networks are now in section C of [`waffle-plate.kicad_sch`](../hardware/original-module/waffle-plate.kicad_sch), all marked `Verified = no`:
+Section C of [`waffle-plate.kicad_sch`](../hardware/original-module/waffle-plate.kicad_sch) is drawn wired as an H-bridge. Leg A (AH above AL) and leg B (BH above BL) share the HV_BUS+ rail across the top. Each leg's midpoint is a wire (BR_A, BR_B), and the two bottom rails join as HB_N. Each switch's gate network runs from its drive pad to both gates, with its emitter (Kelvin) pad on the emitter rail. Everything in section C is marked `Verified = no`. The parts are:
 
 - **AH:** R11–R14, C11–C12.
 - **AL:** R21–R24, C21–C22.
